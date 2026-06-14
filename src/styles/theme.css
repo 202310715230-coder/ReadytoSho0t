@@ -1,0 +1,99 @@
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --font-size: 16px;
+  --background: #F5F0E6; 
+  --foreground: #3D2323; 
+  --card: #FFFFFF;
+  --card-foreground: #3D2323;
+  --popover: #FFFFFF;
+  --popover-foreground: #3D2323;
+  --primary: #A33B4E; 
+  --primary-foreground: #F5F0E6;
+  --secondary: #E9B44C;
+  --secondary-foreground: #3D2323;
+  --muted: #E2D9C8;
+  --muted-foreground: #705D5D;
+  --accent: #DBCFBB;
+  --accent-foreground: #3D2323;
+  --border: #3D2323; /* Border dibuat lebih gelap agar efek brutalism muncul */
+  --input: #ffffff;
+  --ring: #A33B4E;
+  --radius: 0.75rem;
+  
+  /* Tambahan untuk Hard Shadow khas Brutalism */
+  --shadow-retro: 4px 4px 0px 0px #3D2323;
+}
+
+.dark {
+  --background: #1F1212; 
+  --foreground: #F5F0E6;
+  --card: #2D1B1B;
+  --card-foreground: #F5F0E6;
+  --primary: #E9B44C; 
+  --primary-foreground: #1F1212;
+  --secondary: #A33B4E;
+  --secondary-foreground: #F5F0E6;
+  --muted: #2D1B1B;
+  --muted-foreground: #A68E8E;
+  --border: #F5F0E6; /* Border terang di mode gelap */
+  --ring: #E9B44C;
+  --shadow-retro: 4px 4px 0px 0px #000000;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --radius-lg: var(--radius);
+  --shadow-retro: var(--shadow-retro);
+}
+
+@layer base {
+  * {
+    @apply border-border/20 outline-ring/30;
+  }
+
+  body {
+    @apply bg-background text-foreground transition-colors duration-300;
+    /* Tekstur kertas */
+    background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-black tracking-tight uppercase;
+  }
+
+  /* Styling Scrollbar agar senada dengan tema Retro */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-background;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary border-2 border-background;
+  }
+
+  /* Memberikan style default pada tombol */
+  button:not([class*="bg-transparent"]) {
+    @apply shadow-retro hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 cursor-pointer;
+  }
+  
+  /* Input styling agar seragam */
+  input, textarea, select {
+    @apply bg-background border-2 border-border p-3 rounded-lg focus:ring-2 focus:ring-primary outline-none transition-all;
+  }
+}
